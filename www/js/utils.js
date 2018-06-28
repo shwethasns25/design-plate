@@ -6,7 +6,7 @@ var findVal = function(object, key, op, val) {
     Object.keys(object).some(function(k) {
         if (k === key) {
             if (op === 'set') {
-            	object[k] = val;	
+            	object[k] = {"compName" : val};	
             } else object[k] = null;
             return object;
         }
@@ -15,6 +15,26 @@ var findVal = function(object, key, op, val) {
         }
     });
     return object;
+}
+var buildTree = function(node) {
+    if (node.hasChildNodes() && node.dataset && node.dataset.compname) {
+        var children = [];
+        for (var j = 0; j < node.childNodes.length; j++) {
+            children.push(buildTree(node.childNodes[j], {}));
+        }
+        return {
+            component: (node.dataset && node.dataset.compname),
+            child: children,
+            data: {}
+        };
+    }
+    if (node.dataset && node.dataset.compname) {
+    	return {
+        	component: (node.dataset && node.dataset.compname),
+        	data: {}
+        };
+    }
+    return null;
 }
 var l  = {
 	_UI_TREE: {rounter: {div3:'', div1: null}},
@@ -32,8 +52,13 @@ var l  = {
 	    dropTo = ev.target.id;
 	    this._UI_TREE = findVal(this._UI_TREE, dropTo, 'set', data);
 	    console.log(this._UI_TREE);
-	    ev.target.appendChild(document.getElementById(data).cloneNode(true));
+	   	const newChild = document.getElementById(data).cloneNode(true);
+	   	newChild.id = Math.random();
+	    ev.target.appendChild(newChild);
 	},
-	
+	buildTree: function() {
+		const Tree = buildTree(document.getElementById('div1'));
+		console.log(JSON.parse(JSON.stringify(Tree)));
+	}
 };
 export default l;
