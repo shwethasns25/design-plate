@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import ATestComp from "./ATestComp";
 var list = {'ATestComp': ATestComp};
 class App extends Component {
