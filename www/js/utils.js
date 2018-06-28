@@ -32,7 +32,7 @@ var l  = {
 	    dropTo = ev.target.id;
 	    this._UI_TREE = findVal(this._UI_TREE, dropTo, 'set', data);
 	    console.log(this._UI_TREE);
-	    ev.target.appendChild(document.getElementById(data));
+	    ev.target.appendChild(document.getElementById(data).cloneNode(true));
 	},
 	
 };
