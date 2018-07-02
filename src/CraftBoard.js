@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import utils from '../www/js/utils.js';
 import Builder from './Builder';
+import { Link } from 'react-router-dom';
 class CraftBoard extends Component {
    super() {
 
@@ -47,10 +48,10 @@ class CraftBoard extends Component {
                         <div id="comp4" data-compname="a-gid" draggable="true"
                            onDragStart={utils.drag.bind(utils)} className="a-grid">
                            <div className="left" id="comp4-left" data-compname="a-gid-left" onDrop={utils.drop.bind(utils)} onDragOver={utils.allowDrop}>
-                              
+
                            </div>
                            <div className="left" id="comp4-right" data-compname="a-gid-right" onDrop={utils.drop.bind(utils)} onDragOver={utils.allowDrop}>
-                              
+
                            </div>
                         </div>
                      </div>
@@ -58,12 +59,15 @@ class CraftBoard extends Component {
                         <button onClick={utils.buildTree.bind(utils)}>
                            Build The tree
                         </button>
+                        <Link to={'/builder-test/'}>
+                           Preview
+                        </Link>
                      </div>
                   </div>
                </div>
                <div className="col-md-6">
                   <div id="_root" data-compname="_root" className="col-md-12 board" onDrop={utils.drop.bind(utils)} onDragOver={utils.allowDrop}>
-                     
+
                   </div>
                </div>
                <div className="col-md-2">

@@ -6,7 +6,7 @@ var findVal = function(object, key, op, val) {
     Object.keys(object).some(function(k) {
         if (k === key) {
             if (op === 'set') {
-            	object[k] = {"compName" : val};	
+            	object[k] = {"compName" : val};
             } else object[k] = null;
             return object;
         }
@@ -68,6 +68,7 @@ var l  = {
 	buildTree: function() {
 		const Tree = buildTree(document.getElementById('_root'));
         document.getElementById('the-tree-json').innerHTML = JSON.stringify(Tree, undefined, 2);
+        window.tree = Tree;
 	}
 };
 export default l;
