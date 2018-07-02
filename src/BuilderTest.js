@@ -22,7 +22,6 @@ class BuilderTest extends Component {
 		return <Ele>{child}</Ele>;
 	};
 	render() {
-
 		return (this.buildThePage());
    	}
 }

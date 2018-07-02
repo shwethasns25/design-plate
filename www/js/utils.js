@@ -17,18 +17,25 @@ var findVal = function(object, key, op, val) {
     return object;
 }
 var buildTree = function(node) {
-    if (node.hasChildNodes() && node.dataset && node.dataset.compname) {
+    if (node && node.hasChildNodes() && node.dataset && node.dataset.compname) {
         var children = [];
         for (var j = 0; j < node.childNodes.length; j++) {
-            children.push(buildTree(node.childNodes[j], {}));
+            var theChild = buildTree(node.childNodes[j], {});
+            if(theChild)
+            children.push(theChild);
         }
-        return {
+        if(children.length)
+            return {
+                component: (node.dataset && node.dataset.compname),
+                child: children,
+                data: {}
+            };
+        else return {
             component: (node.dataset && node.dataset.compname),
-            child: children,
             data: {}
         };
     }
-    if (node.dataset && node.dataset.compname) {
+    if (node && node.dataset && node.dataset.compname) {
     	return {
         	component: (node.dataset && node.dataset.compname),
         	data: {}
@@ -54,11 +61,13 @@ var l  = {
 	    console.log(this._UI_TREE);
 	   	const newChild = document.getElementById(data).cloneNode(true);
 	   	newChild.id = Math.random();
+        newChild.addEventListener('dragstart', this.drag, false);
+        newChild.setAttribute('tobecloned', this.drag, false);
 	    ev.target.appendChild(newChild);
 	},
 	buildTree: function() {
-		const Tree = buildTree(document.getElementById('div1'));
-		console.log(JSON.parse(JSON.stringify(Tree)));
+		const Tree = buildTree(document.getElementById('_root'));
+        document.getElementById('the-tree-json').innerHTML = JSON.stringify(Tree, undefined, 2);
 	}
 };
 export default l;

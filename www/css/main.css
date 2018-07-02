@@ -34,6 +34,44 @@
   width: 100%;
   border: solid 1px;
 }
+.the-plate {
+  position: relative;
+  width: 300%;
+  display: inline-block;
+}
+.the-tree-json {
+  height: 100%;
+}
+.goLeft {
+  left: -100%;
+}
+.goRight {
+  left: 100%;
+}
+.go-right {
+  z-index: 99;
+  position: fixed;
+  right: 0;
+  height: 45px;
+  width: 45px;
+  background-color: #0ff;
+  padding: 10px;
+  border: solid 1px;
+  border-radius: 50%;
+  top: 40%;
+}
+.go-left {
+  z-index: 99;
+  position: fixed;
+  left: 0;
+  height: 45px;
+  width: 45px;
+  background-color: #0ff;
+  padding: 10px;
+  border: solid 1px;
+  border-radius: 50%;
+  top: 40%;
+}
 .a-grid .left,
 .a-grid .left {
   position: relative;
